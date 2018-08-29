@@ -14,3 +14,4 @@
 Route::get('/', function () {
     return view('post/index');
 });
+Route::resource('proposals', 'ProposalController');
