@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('post/index');
+    return view('proposal/index');
 });
+
 Route::resource('proposals', 'ProposalController');

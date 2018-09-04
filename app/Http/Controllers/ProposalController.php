@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\EventListener\ValidateRequestListener;
 
 class ProposalController extends Controller
 {
@@ -11,7 +12,7 @@ class ProposalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Requst $request)
+    public function index( Request $request)
     {
         $proposal = $request->user()->proposal();
         return view('proposal.index');
@@ -24,7 +25,8 @@ class ProposalController extends Controller
      */
     public function create()
     {
-        return view('create');
+       // $proposal = new Proposal;
+        return view('proposal.create');
     }
 
     /**
@@ -35,7 +37,12 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+           'proposal_title'=> 'reqiured',
+           'prop_summary' => 'required'
+        ]);
+
+       return 123; 
     }
 
     /**
