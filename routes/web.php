@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('proposal/index');
-});
+
 
 Route::resource('proposals', 'ProposalController');

@@ -6,5 +6,5 @@
 
 @section('content')
   <h1>Create new proposal</h1>
-  @include('partials._form')
+  @include('partials.form')
 @endsection
