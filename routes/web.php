@@ -14,3 +14,7 @@
 
 
 Route::resource('proposals', 'ProposalController');
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
