@@ -47,7 +47,6 @@ class ProposalController extends Controller
            'address' => 'required',
            'phone' => 'required',
            'email' => 'required',
-           'submited_by' => 'required',
            'pro_summary' => 'required',
            'prop_background' => 'required',
            'activities' => 'required',
