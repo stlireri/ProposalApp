@@ -16,8 +16,7 @@ class ProposalController extends Controller
     public function index( Request $request)
     {
         $proposal = Proposal::orderBy('created_at','desc')->get();
-        $proposal = Proposal::orderBy('created_at','desc')->paginate(3);
-       // $proposal = Proposal::paginate(4);
+       
         return view('proposal.index')->with('proposal', $proposal);
          
     }
@@ -42,25 +41,22 @@ class ProposalController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-           'title'=> 'required',
-           'organization_name' => 'required',
+           'title'=> 'required',    
            'address' => 'required',
            'phone' => 'required',
            'email' => 'required',
            'pro_summary' => 'required',
-           'prop_background' => 'required',
+           'pro_background' => 'required',
            'activities' => 'required',
            'budget' => 'required'
         ]);
 
-       // Proposal::create($request->all());
+      // Proposal::create($request->all());
+     // dd(auth()->user());
+      auth()->user()->proposals()->create($request->all());
+      // $proposal-> save();
 
-       $proposal = new Proposal;
-       //$proposal->title = $request->input('title');
-       //$proposal->pro_summary = $request->input('pro_summary');
-       $proposal-> save();
-
-        return redirect()->route('proposals.show') 
+        return redirect()->route('proposals.index') 
                          ->with('success','Proposal created successfully');
     }
 
@@ -82,10 +78,10 @@ class ProposalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($proposal)
+    public function edit($id)
     {
-        $proposal = Proposal::find($proposal);
-        return redirect()->route('proposals.edit');
+        $proposal = Proposal::find($id);
+        return redirect()->route('proposals.show');
     }
 
     /**

@@ -7,6 +7,9 @@
     <div>
       {!!$proposal->pro_summary!!}
     </div>
+
+    <a href="/proposals/$id/edit " , class="btn btn-sm btn-info">Preview </a>
+
   <hr>
   <small>Written on {{$proposal->created_at}}</small> 
 @endsection

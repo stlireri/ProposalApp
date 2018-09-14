@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Proposal extends Model
 {
     protected $fillable = [
-        'title', 'organization_name', 'address', 'phone',
-        'email', 'submited_by', 'pro_summary', 'prop_background', 'activities', 'budget'
+        'title', 'address', 'phone',
+        'email', 'pro_summary', 'pro_background', 'activities', 'budget'
 
     ];
+    public function proposals(){
+        $this->belongsTo($user_id); }
+
 }

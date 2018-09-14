@@ -9,13 +9,7 @@
           {!! Form::label('title', 'Title') !!}
           {!! Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'enter your title']) !!}
         </div>
-      </div>
 
-      <div class="col-md-6">
-         <div class="form-group">
-          {!! Form::label('organization_name', 'Organisation Name') !!}
-          {!! Form::text('organization_name', '', ['class' => 'form-control',  'placeholder' => 'name of your organisation']) !!}
-        </div>
         <div>
 
         <div class="form-group">
@@ -38,8 +32,8 @@
           {!! Form::textarea('pro_summary', '', ['class' => 'form-control',  'placeholder' => 'your proposal body goes here']) !!}
         </div>
         <div class="form-group">
-          {!! Form::label('prop_background', 'Background') !!}
-          {!! Form::textarea('prop_background', '', ['class' => 'form-control',  'placeholder' => 'your proposal background']) !!}
+          {!! Form::label('pro_background', 'Background') !!}
+          {!! Form::textarea('pro_background', '', ['class' => 'form-control',  'placeholder' => 'your proposal background']) !!}
         </div>
         <div class="form-group">
           {!! Form::label('activities', 'Activities') !!}
@@ -52,6 +46,7 @@
 
 
         <button class="btn btn-success" type="submit"> Submit Proposal </button>
+      </div>
 
       {!! Form::close() !!}
     </div>
