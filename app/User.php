@@ -30,4 +30,8 @@ class User extends Authenticatable
         return $this->hasMany(Proposal::class); 
        
     }
+
+    public function verifyUser(){
+        return $this->hasOne('App/VerifyUser');
+    }
 }
