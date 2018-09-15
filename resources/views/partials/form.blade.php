@@ -4,13 +4,10 @@
 
         {!! Form::open(['action' => 'ProposalController@store', 'method' => 'POST']) !!}
         {{ csrf_field() }}
-        <div class="col-md-6">
         <div class="form-group">
           {!! Form::label('title', 'Title') !!}
           {!! Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'enter your title']) !!}
         </div>
-
-        <div>
 
         <div class="form-group">
           {!! Form::label('address', 'Address') !!}

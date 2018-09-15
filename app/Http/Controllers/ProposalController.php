@@ -112,14 +112,9 @@ class ProposalController extends Controller
      */
     public function destroy($id)
     {
-        $this->validate($request, [
-            'title'   => 'required',
-            'pro_summary' => 'required',
-        ]);
-
-        Proposal::find($proposal)->update($request->all());
-
-        return redirect()->route('proposals.index')
-                        ->with('success','News updated successfully');
+        $proposal = Proposal::findOrFail($id);
+        $proposal->delete();
+    
+        return Redirect::route('proposals.index');      
     }
 }

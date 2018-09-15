@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
-    @yield('styles')
-</head>
-<body>
-  @include('inc.messages')
-  @yield('content')
+  <div class="jumbotron vertical-center"> 
+      <div class="container">
+        <head>
+            <meta charset="UTF-8">
+            <title>@yield('title')</title>
+            <link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
+            @yield('styles')
+        </head>
+        <body>
+          @include('inc.messages')
+          @yield('content')
 
-  <script type="text/javascript" src="{{ URL::to('js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::to('js/bootstrap.min.js') }}"></script>
-@yield('scripts')
-
-</body>
+          <script type="text/javascript" src="{{ URL::to('js/jquery.min.js') }}"></script>
+          <script type="text/javascript" src="{{ URL::to('js/bootstrap.min.js') }}"></script>
+          @yield('scripts')
+          
+        </body>
+    </div>
+  </div>
 </html>
