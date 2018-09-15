@@ -19,3 +19,6 @@ Route::resource('proposals', 'ProposalController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
