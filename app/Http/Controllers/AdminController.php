@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Proposal;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -11,28 +14,45 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function admin()
+    public function admin(Proposal $proposal)
     {
-        return view('admin/index');
+        $users=auth()->user();
+        $proposal = Proposal::all();           
+        return view('admin.index', compact('proposal', 'users'));
+
     }
 
-    public function stage_one()
+    public function review($id)
     {
-        return view('admin/stage_one');
+        $users=auth()->user();
+        $proposal = Proposal::find($id);
+        //$proposal = Proposal::where('id', request('id'))->get();
+        return  view('admin.show', compact('proposal', 'users'));
     }
-
-    public function stage_two()
-    {
-        return view('admin/stage_two');
+    public function stage1($proposal_id) 
+    { 
+        $proposal = Proposal::find($proposal_id);
+        $proposal->stage = 'stage-1';
+        $proposal->save(); 
+        return back();
     }
-
-    public function approved()
-    {
-        return view('admin/approved');
-    }
-
-    public function Rejected()
-    {
-        return view('admin/rejected');
+    public function stage2($proposal_id) 
+    { 
+        $proposal = Proposal::find($proposal_id);
+        $proposal->stage = 'stage-2';
+        $proposal->save(); 
+        return back();
+    } public function approved($proposal_id) 
+    { 
+        $proposal = Proposal::find($proposal_id);
+        $proposal->stage = 'approved';
+        $proposal->save(); 
+        return back();
+    } public function rejected($proposal_id) 
+    { 
+        $proposal = Proposal::find($proposal_id);
+        $proposal->stage = 'rejected';
+        $proposal->save(); 
+        return back();
     }
 }

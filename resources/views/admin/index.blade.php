@@ -13,20 +13,37 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h1>One Love Administration Panel</h1><br>
-                    <hr>
-                    <h1 class="h1">Stage One</h1>
-                    <a href="#" class="btn btn-sm btn-success">Accept</a>
-                    <a href="#" class="btn btn-sm btn-danger">Reject</a>
-                    <hr>
-                    <h1 class="h1">Stage Two</h1>
-                    <a href="#" class="btn btn-sm btn-success">Accept</a>
-                    <a href="#" class="btn btn-sm btn-danger">Reject</a>
-                    <hr>  
-                    <div class="navigate">
-                        <a href="{{ URL::route('proposals.index') }}" , class="btn btn-lg btn-primary">Review submited proposals</a>
-                      </div> 
-                </div>
+                   
+					<div class="row">
+						<div class="twelve columns">
+							<h5>Users Proposals</h5>
+						</div>
+					</div>
+
+					<div class="row">
+						<table class="twelve dtable">
+						<thead>
+							<tr>
+								<th>Proposal Title</th>
+								<th>Submitted By</th>
+								<th>Submitted At</th>
+								<th>Review stage</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($proposal as $prop)
+								<tr>
+									<td>{{ $prop->title }}</td>
+									<td>{{ $prop->email }}</td>
+									<td>{{ $prop->updated_at }}</td>
+									<td>{{ $prop->stage }}</td>
+									<td><a href="{{ Route('review', $prop->id)}}", class="btn btn-lg btn-info">View</a></td>
+								</tr>
+							@endforeach
+						</tbody>
+						</table>
+					</div>
+									</div>
             </div>
         </div>
     </div>
