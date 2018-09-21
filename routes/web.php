@@ -22,14 +22,19 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-//Route::get('/admin', 'AdminController@admin')    
-   // ->middleware('is_admin')    
-   // ->name('admin');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@admin')->name('admin') ;
 
-Route::get('protected', ['middleware' => ['auth', 'is_admin'], function() {
+Route::get('/normal', 'HomeController@redirect');
+
+Route::get('/admin', 'AdminController@admin')    
+   ->middleware('is_admin')    
+   ->name('admin');
+
+//Route::get('protected', ['middleware' => ['auth', 'is_admin'], function() {
     
-    return "this page requires that you be logged in and an Admin";
-}]);
+   // return "this page requires that you be logged in and an Admin";
+//}]);
 
 Route::get('/review/{proposal_id}','AdminController@review')
     ->name('review');

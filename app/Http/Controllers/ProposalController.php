@@ -15,6 +15,7 @@ class ProposalController extends Controller
      */
     public function index( Request $request)
     {
+        $users=auth()->user();
         $proposal = Proposal::orderBy('created_at','desc')->get();
        
         return view('proposal.index')->with('proposal', $proposal);
