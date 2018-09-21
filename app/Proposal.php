@@ -12,6 +12,6 @@ class Proposal extends Model
 
     ];
     public function proposals(){
-        $this->belongsTo($user_id); }
-
+        $this->belongsTo($user_id);
+    }
 }
