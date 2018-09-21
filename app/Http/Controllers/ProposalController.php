@@ -28,8 +28,8 @@ class ProposalController extends Controller
      */
     public function create()
     {
-       // $proposal = new Proposal;
-        return view('proposal.create');
+        $users=auth()->user();
+        return view('proposal.create', compact('users'));
     }
 
     /**
@@ -50,34 +50,22 @@ class ProposalController extends Controller
            'activities' => 'required',
            'budget' => 'required'
         ]);
-
-      // Proposal::create($request->all());
-     // dd(auth()->user());
       auth()->user()->proposals()->create($request->all());
-      // $proposal-> save();
+     
 
         return redirect()->route('proposals.index') 
                          ->with('success','Proposal created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
+        $users=auth()->user();
         $proposal = Proposal::find($id);
-        return view('proposal.show')->with('proposal', $proposal);
+        return view('proposal.show', compact('users', 'proposal'))->with('proposal', $proposal);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         $proposal = Proposal::find($id);
@@ -93,15 +81,22 @@ class ProposalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title'   => 'required',
-            'pro_summary' => 'required',
-        ]);
+        $proposal->title=$request->get('title');
+            $proposal->phone=$request->get('phone');  
+            $proposal->address=$request->get('address');
+            $proposal->email=$request->get('email');
+            $proposal->organisation_name=$request->get('organisation_name');
+            $proposal->pro_summary=$request->get('pro_summary');
+            $proposal->pro_background=$request->get('pro_background');
+            $proposal->activities=$request->get('activities');
+            $proposal->budget=$request->get('budget');
+       
+        $proposal->save();
 
         Proposal::find($proposal)->update($request->all());
 
         return redirect()->route('proposals.index')
-                        ->with('success','News updated successfully');
+                        ->with('success','Proposal updated successfully');
     }
 
     /**
@@ -117,4 +112,57 @@ class ProposalController extends Controller
     
         return Redirect::route('proposals.index');      
     }
+
+    public function rejected(Proposal $proposal)
+    {
+
+           $users=auth()->user();
+           $user=$users->email;
+           $proposal = Proposal::where('submitted_by', $user)->where('stage', 'reject')->orderBy('updated_at','desc')->get();
+           
+           return view('user.user',compact('proposal','users'));
+   }
+   public function stageoneuser(Proposal $proposal)
+   {
+           $users=auth()->user();
+           $user=$users->email;
+          
+           $proposal=Proposal::where('submitted_by', $user)->where('stage','stageone')->orderBy('updated_at','desc')->get();
+           
+           return view('user.user',compact('proposal','users'));
+   }
+    public function userdrafts(Proposal $proposal)
+   {
+           $users=auth()->user();
+           $user=$users->email;
+          
+           $proposal=Proposal::where('submitted_by', $user)->where('draft',1)->orderBy('updated_at','desc')->get();
+           
+           return view('user.user',compact('proposal','users'));
+   }
+   public function stage_two_user(Proposal $proposal)
+   {
+           $users=auth()->user();
+           $user=$users->email;
+           $proposal=Proposal::where('submitted_by', $user)->where('stage','stagetwo')->orderBy('updated_at','desc')->get();
+           return view('user.user',compact('proposal','users'));
+   }
+   public function new_proposals(Proposal $proposal)
+   {
+           $users=auth()->user();
+           $user=$users->email;
+           $proposal=Proposal::where('submitted_by', $user)->whereNull('stage')->orderBy('updated_at','desc')->get();
+          
+           return view('user.user',compact('proposal','users'));
+   }
+   public function accepted_user(Proposal $proposal)
+   {
+
+           $users=auth()->user();
+           $user=$users->email;
+           $proposal=Proposal::where('submitted_by', $user)->where('stage','Accepted')->orderBy('updated_at','desc')->get();
+          
+           return view('user.user',compact('proposal','users'));
+   }
+
 }

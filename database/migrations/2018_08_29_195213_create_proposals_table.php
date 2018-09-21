@@ -24,6 +24,7 @@ class CreateProposalsTable extends Migration
             $table->string('pro_background');
             $table->string('activities');
             $table->string('budget');
+            $table->string('stage')->default('new');
             $table->timestamps();
         });
     }
