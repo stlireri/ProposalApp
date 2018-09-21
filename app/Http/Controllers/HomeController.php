@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
 
     public function redirect(){
-        $user = User::where('id',Auth()->user->id);
+        $user = User::where('id',Auth()->user()->id);
         if($user->admin){
             return redirect()->route('admin');
         }else{
