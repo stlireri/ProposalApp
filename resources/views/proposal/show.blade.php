@@ -1,12 +1,13 @@
+@extends('layouts/app')
+
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          @extends('layouts/master')
-
-          @section('content')
             <a href="/proposals" class="btn btn-sm btn-default">Go Back</a>
             <h1>{{$proposal->title}}</h1>
+            <hr>
               <div>
                 Address: {!!$proposal->address!!}<br>
                 Phone: {!!$proposal->phone!!}<br>
@@ -18,8 +19,9 @@
               </div>
             <hr>
             <small>Written on {{$proposal->created_at}}</small> 
-          @endsection
+       
         </div>
       </div>
     </div>
 </div>
+@endsection
