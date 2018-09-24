@@ -1,3 +1,6 @@
+@extends('layouts/app')
+
+@section('content')
 <div class="container">
   <h1 class="h1">Approved</h1>
   <hr>
@@ -32,3 +35,4 @@
     </table>
   </div>
 </div>
+@endsection

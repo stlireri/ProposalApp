@@ -26,7 +26,6 @@ class AdminController extends Controller
     {
         $users=auth()->user();
         $proposal = Proposal::find($id);
-        //$proposal = Proposal::where('id', request('id'))->get();
         return  view('admin.show', compact('proposal', 'users'));
     }
     public function stage1($proposal_id) 

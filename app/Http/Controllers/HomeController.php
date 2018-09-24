@@ -24,17 +24,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+
+    public function index(User $user)
+    {   $user_id = \Auth::id();
+        $user = User::find($user_id);
+        if($user->type=='admin')
+        {
+            return redirect()->route('admin');
+        }
         return view('home');
     }
 
-    public function redirect(){
-        $user = User::where('id',Auth()->user()->id);
-        if($user->admin){
-            return redirect()->route('admin');
-        }else{
-            return redirect()->route('home');
-        }
-    }
 }
