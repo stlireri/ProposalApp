@@ -7,10 +7,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Admin Dashboard
-					<a class="nav-link" href="/stage-1/{proposal_id}">Stage One</a>
-					<a class="nav-link" href="">Stage Two</a>
-					<a class="nav-link" href="">Approved</a>
-					<a class="nav-link" href="">Rejected</a>				
+					<a class="nav-link" href="/stage1">Stage One</a>
+					<a class="nav-link" href="/stage2">Stage Two</a>
+					<a class="nav-link" href="/approved">Approved</a>
+					<a class="nav-link" href="/rejected">Rejected</a>				
 				</div>
 
                 <div class="card-body">

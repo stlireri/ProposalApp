@@ -119,51 +119,51 @@ class ProposalController extends Controller
 
            $users=auth()->user();
            $user=$users->email;
-           $proposal = Proposal::where('submitted_by', $user)->where('stage', 'reject')->orderBy('updated_at','desc')->get();
+           $proposal = Proposal::where('stage', 'rejected')->orderBy('updated_at','desc')->get();
            
-           return view('user.user',compact('proposal','users'));
+           return view('admin.rejected',compact('proposal','users'));
    }
-   public function stageoneuser(Proposal $proposal)
+   public function stage1(Proposal $proposal)
    {
            $users=auth()->user();
            $user=$users->email;
           
-           $proposal=Proposal::where('submitted_by', $user)->where('stage','stageone')->orderBy('updated_at','desc')->get();
+           $proposal=Proposal::where('stage','stage-1')->orderBy('updated_at','desc')->get();
            
-           return view('user.user',compact('proposal','users'));
+           return view('admin.stage_one',compact('proposal','users'));
    }
     public function userdrafts(Proposal $proposal)
    {
            $users=auth()->user();
            $user=$users->email;
           
-           $proposal=Proposal::where('submitted_by', $user)->where('draft',1)->orderBy('updated_at','desc')->get();
+           $proposal=Proposal::where('draft',1)->orderBy('updated_at','desc')->get();
            
            return view('user.user',compact('proposal','users'));
    }
-   public function stage_two_user(Proposal $proposal)
+   public function stage2(Proposal $proposal)
    {
            $users=auth()->user();
            $user=$users->email;
-           $proposal=Proposal::where('submitted_by', $user)->where('stage','stagetwo')->orderBy('updated_at','desc')->get();
-           return view('user.user',compact('proposal','users'));
+           $proposal=Proposal::where('stage','stage-2')->orderBy('updated_at','desc')->get();
+           return view('admin.stage_two',compact('proposal','users'));
    }
-   public function new_proposals(Proposal $proposal)
+   public function new(Proposal $proposal)
    {
            $users=auth()->user();
            $user=$users->email;
-           $proposal=Proposal::where('submitted_by', $user)->whereNull('stage')->orderBy('updated_at','desc')->get();
+           $proposal=Proposal::where('stage','new')->orderBy('updated_at','desc')->get();
           
-           return view('user.user',compact('proposal','users'));
+           return view('/admin',compact('proposal','users'));
    }
-   public function accepted_user(Proposal $proposal)
+   public function approved(Proposal $proposal)
    {
 
            $users=auth()->user();
            $user=$users->email;
-           $proposal=Proposal::where('submitted_by', $user)->where('stage','Accepted')->orderBy('updated_at','desc')->get();
+           $proposal=Proposal::where('stage','approved')->orderBy('updated_at','desc')->get();
           
-           return view('user.user',compact('proposal','users'));
+           return view('admin.approved',compact('proposal','users'));
    }
 
 }

@@ -45,3 +45,16 @@ Route::get('/approved/{proposal_id}','AdminController@approved')
 Route::get('/rejected/{proposal_id}','AdminController@rejected')
     ->name('rejected');
 
+
+
+Route::get('/rejected','ProposalController@rejected')
+    ->name('rejected');
+
+Route::get('/stage1','ProposalController@stage1')
+    ->name('stage1');
+
+Route::get('/stage2','ProposalController@stage2')
+    ->name('stage2');
+
+Route::get('/approved','ProposalController@approved')
+    ->name('approved');

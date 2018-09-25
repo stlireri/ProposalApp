@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h1 class="h1">Stage Two</h1>
+      <h1 class="h1">Stage Two Proposals</h1>
       <hr>
       <div class="row">
         <table class="twelve dtable">
@@ -21,22 +21,25 @@
             </tr>
           </thead>
           <tbody>
+              @foreach ($proposal as $object)          
             <tr>
-              <td>{{ $proposal->title }}</td>
-              <td>{{ $proposal->email }}</td>
-              <td>{{ $proposal->phone}}</td>
-              <td>{{ $proposal->address }}</td> 
-              <td>{{ $proposal->pro_summary}}</td>
-              <td>{{ $proposal->pro_background }}</td>
-              <td>{{ $proposal->activities }}</td> 
-              <td>KSH: {{ $proposal->budget }}</td> 
-              <td>{{ $proposal->updated_at }}</td>
-              <a href="{{ Route('approved', $proposal->id)}}" class="btn btn-sm btn-success">Approved</a>
-              <a href="{{ Route('rejected', $proposal->id)}}" class="btn btn-sm btn-danger">Reject</a>
+              <td>{{ $object->title }}</td>
+              <td>{{ $object->email }}</td>
+              <td>{{ $object->phone}}</td>
+              <td>{{ $object->address }}</td> 
+              <td>{{ $object->pro_summary}}</td>
+              <td>{{ $object->pro_background }}</td>
+              <td>{{ $object->activities }}</td> 
+              <td>KSH: {{ $object->budget }}</td> 
+              <td>{{ $object->updated_at }}</td>
+              <td><a href="{{ Route('approve', $proposal->id)}}" class="btn btn-sm btn-success">Accept</a></td>
+              <td><a href="{{ Route('rejected', $proposal->id)}}" class="btn btn-sm btn-danger">Reject</a></td>
             </tr>
+            @endforeach
             
           </tbody>
         </table>
+        <button > <a href="/admin" id="btn btn-sm btn-info">Back</a></button>
       </div>
     </div>
   </div>
