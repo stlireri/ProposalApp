@@ -41,10 +41,24 @@
               </tr>
             
             
-              <tr>
-                <td><a href="{{ Route('stage1', $proposal->id)}}" class="btn btn-sm btn-success">Accept</a></td>
-              
-                <td><a href="{{ Route('rejected', $proposal->id)}}" class="btn btn-sm btn-danger">Reject</a></td>
+              <tr>/stage-1/{proposal_id}
+                  <a href="{{ Route('stage1', $proposal->id)}}" class="btn btn-sm btn-success">Accept</a>
+
+                  @if(($proposal->stage == 'new') )
+                  <button  id="move" ><a href="/stage-1/{proposal_id}" class="btn btn-sm btn-info">Move To Stage-1</a></button> 
+                  <button id="moveright"> <a href="/reject/{proposal_id}" id="btn btn-sm btn-danger">Reject</a></button>
+                  @elseif ($proposal->stage == 'stage-1')
+                  <button  id="move"><a href="/admin/{{$proposal->id}}/stage2" id="btn btn-sm btn-info">Move To Stage-2</a></button> 
+                  <button id="moveright"> <a href="/admin/{{$proposal->id}}/reject" id="btn btn-sm btn-danger">Reject</a></button>
+                  @elseif ($proposal->stage == 'stage-2')
+                  <button  id="move"><a href="/admin/{{$proposal->id}}/accepted" id="btn btn-sm btn-info">Accept</a></button> 
+                  <button  id="moveright"><a href="/admin/{{$proposal->id}}/reject" id="btn btn-sm btn-danger">Reject</a></button> 
+                  @elseif   ($proposal->stage == 'rejected')
+                  <button > <a href="/admin" id="btn btn-sm btn-info">Back</a></button>
+                  @else
+                  <button > <a href="/admin" id="btn btn-sm btn-info">Back</a></button>
+                  @endif
+              </div>
               </tr>
               
             </tbody>
