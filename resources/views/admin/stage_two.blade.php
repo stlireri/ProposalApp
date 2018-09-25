@@ -32,8 +32,7 @@
               <td>{{ $object->activities }}</td> 
               <td>KSH: {{ $object->budget }}</td> 
               <td>{{ $object->updated_at }}</td>
-              <td><a href="{{ Route('approve', $proposal->id)}}" class="btn btn-sm btn-success">Accept</a></td>
-              <td><a href="{{ Route('rejected', $proposal->id)}}" class="btn btn-sm btn-danger">Reject</a></td>
+              
             </tr>
             @endforeach
             
