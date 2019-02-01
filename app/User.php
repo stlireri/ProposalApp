@@ -34,5 +34,12 @@ class User extends Authenticatable
 
     public function verifyUser(){
         return $this->hasOne('App/VerifyUser');
+
+    const ADMIN_TYPE ='admin';
+    const DEFAULT_TYPE = 'default';
+
+    public function isAdmin(){
+        return $this->type === self::ADMIN_TYPE;
+
     }
 }
