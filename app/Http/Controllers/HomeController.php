@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Auth\LoginController;
+
 use App\User;
 use App\Proposal;
-
 
 class HomeController extends Controller
 {

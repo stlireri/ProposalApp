@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -31,10 +32,14 @@ class User extends Authenticatable
        
     }
 
+    public function verifyUser(){
+        return $this->hasOne('App/VerifyUser');
+
     const ADMIN_TYPE ='admin';
     const DEFAULT_TYPE = 'default';
 
     public function isAdmin(){
         return $this->type === self::ADMIN_TYPE;
+
     }
 }

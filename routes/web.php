@@ -22,6 +22,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+
+
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/normal', 'HomeController@redirect');
@@ -58,3 +62,4 @@ Route::get('/stage-2','ProposalController@stage2')
 
 Route::get('/approved','ProposalController@approved')
     ->name('approve');
+
